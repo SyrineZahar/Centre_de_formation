@@ -7,12 +7,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import learning.formation.Entities.Admin;
 import learning.formation.Services.AdminService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.List;
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
@@ -43,15 +46,22 @@ public class JwtFilter extends OncePerRequestFilter {
             Admin admin = adminService.getAdminByUsername(username);
 
             if (admin != null && jwtUtil.isTokenValid(jwtToken, admin)) {
-                UsernamePasswordAuthenticationToken authToken =
-                        new UsernamePasswordAuthenticationToken(admin, null, null);
+                // Assuming the admin role is "ROLE_ADMIN", you may need to dynamically handle this
+                List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_" + admin.getRole());
 
+                // Create the authentication token with authorities
+                UsernamePasswordAuthenticationToken authToken =
+                        new UsernamePasswordAuthenticationToken(admin, null, authorities);
+
+                // Set the details of the request
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
+                // Set the authentication in the context
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }
 
+        // Continue with the filter chain
         filterChain.doFilter(request, response);
     }
 }

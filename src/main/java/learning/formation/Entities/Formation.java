@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
@@ -19,10 +20,10 @@ public class Formation implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotNull(message = "Title is required")
+    @NotBlank(message = "Title is required")
     private String title;
 
-    @NotNull(message = "Description is required")
+    @NotBlank(message = "Description is required")
     private String description;
 
     @NotNull(message = "Price is required")

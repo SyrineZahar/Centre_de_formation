@@ -16,20 +16,22 @@ public class JwtUtil {
     public String generateToken(String username, String role) {
         return Jwts.builder()
                 .setSubject(username)
-                .claim("role", role)
+                .claim("role", "ROLE_" + role)  // Prefix the role
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 86400000))
                 .signWith(secretKey)
                 .compact();
     }
 
+
     public boolean validateToken(String token, String username) {
         return username.equals(getUsernameFromToken(token)) && !isTokenExpired(token);
     }
 
     public boolean isTokenValid(String token, Admin admin) {
-        return validateToken(token, admin.getUsername()) && getRoleFromToken(token).equals(admin.getRole());
+        return validateToken(token, admin.getUsername()) && getRoleFromToken(token).equals("ROLE_" + admin.getRole());
     }
+
 
     public String getUsernameFromToken(String token) {
         return Jwts.parser()

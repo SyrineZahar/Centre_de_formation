@@ -33,6 +33,7 @@ public class SecurityConfig {
                     corsConfiguration.setAllowCredentials(true);
                     return corsConfiguration;
                 }))
+
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/auth/**").permitAll()

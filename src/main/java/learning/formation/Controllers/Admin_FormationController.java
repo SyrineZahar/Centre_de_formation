@@ -5,6 +5,7 @@ import learning.formation.Services.FormationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/admin/formations")
+@PreAuthorize("hasRole('ADMIN')")
 public class Admin_FormationController {
 
     @Autowired
@@ -43,7 +45,6 @@ public class Admin_FormationController {
             Formation createdFormation = formationService.addFormation(formation);
             return new ResponseEntity<>(createdFormation, HttpStatus.CREATED);
         } catch (Exception e) {
-            // Return a simple error message with the exception details
             return new ResponseEntity<>(
                     "Error: " + e.getMessage(),
                     HttpStatus.INTERNAL_SERVER_ERROR

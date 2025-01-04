@@ -3,7 +3,6 @@ package learning.formation.ServicesImpl;
 import learning.formation.Entities.Formation;
 import learning.formation.Repository.FormationRepository;
 import learning.formation.Services.FormationService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
