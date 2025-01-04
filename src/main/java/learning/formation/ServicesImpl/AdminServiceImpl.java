@@ -16,4 +16,5 @@ public class AdminServiceImpl implements AdminService {
     public Admin getAdminByUsername(String username) {
         return adminRepository.findByUsername(username);
     }
+
 }

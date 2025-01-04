@@ -18,8 +18,8 @@ public class JwtUtil {
                 .setSubject(username)
                 .claim("role", role)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 86400000)) // Token expires in 1 day
-                .signWith(SignatureAlgorithm.HS512, secretKey)
+                .setExpiration(new Date(System.currentTimeMillis() + 86400000))
+                .signWith(secretKey)
                 .compact();
     }
 
@@ -28,7 +28,6 @@ public class JwtUtil {
     }
 
     public boolean isTokenValid(String token, Admin admin) {
-        // Validate token for admin and check role
         return validateToken(token, admin.getUsername()) && getRoleFromToken(token).equals(admin.getRole());
     }
 
@@ -40,7 +39,6 @@ public class JwtUtil {
                 .getSubject();
     }
 
-    // Check if the token has expired
     private boolean isTokenExpired(String token) {
         return getExpirationDateFromToken(token).before(new Date());
     }
@@ -53,7 +51,6 @@ public class JwtUtil {
                 .getExpiration();
     }
 
-    // Extract role from token
     public String getRoleFromToken(String token) {
         return (String) Jwts.parser()
                 .setSigningKey(secretKey)

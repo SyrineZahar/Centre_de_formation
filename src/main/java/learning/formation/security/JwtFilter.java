@@ -34,30 +34,24 @@ public class JwtFilter extends OncePerRequestFilter {
         String username = null;
         String jwtToken = null;
 
-        // Check for "Bearer" token in the Authorization header
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            jwtToken = authorizationHeader.substring(7);  // Extract JWT token
-            username = jwtUtil.getUsernameFromToken(jwtToken); // Extract username from token
+            jwtToken = authorizationHeader.substring(7);
+            username = jwtUtil.getUsernameFromToken(jwtToken);
         }
 
-        // If username exists and no existing authentication is in place
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            Admin admin = adminService.getAdminByUsername(username);  // Retrieve Admin using AdminService
+            Admin admin = adminService.getAdminByUsername(username);
 
-            if (admin != null && jwtUtil.isTokenValid(jwtToken, admin)) {  // Validate the token
-                // Create authentication token for the Admin
+            if (admin != null && jwtUtil.isTokenValid(jwtToken, admin)) {
                 UsernamePasswordAuthenticationToken authToken =
-                        new UsernamePasswordAuthenticationToken(admin, null, null); // No credentials needed
+                        new UsernamePasswordAuthenticationToken(admin, null, null);
 
-                // Set authentication details
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-                // Set authentication in the security context
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }
 
-        // Continue with the filter chain
         filterChain.doFilter(request, response);
     }
 }

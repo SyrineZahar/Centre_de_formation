@@ -21,7 +21,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public String authenticate(String username, String password) {
-        Admin admin = adminRepository.findByUsername(username); // Ensure this method is implemented in your repository
+        Admin admin = adminRepository.findByUsername(username);
 
         if (admin != null && passwordEncoder.matches(password, admin.getPassword())) {
             return jwtUtil.generateToken(admin.getUsername(), admin.getRole());
@@ -29,4 +29,17 @@ public class AuthServiceImpl implements AuthService {
             return null;
         }
     }
+
+    @Override
+    public Admin registerAdmin(Admin admin) {
+        if (adminRepository.findByUsername(admin.getUsername()) != null) {
+            throw new RuntimeException("Username already exists");
+        }
+        if (adminRepository.findByEmail(admin.getEmail()) != null) {
+            throw new RuntimeException("Email already exists");
+        }
+
+        // Encode the password before saving
+        admin.setPassword(passwordEncoder.encode(admin.getPassword()));
+        return adminRepository.save(admin);    }
 }
