@@ -1,32 +1,42 @@
 <div class="admin-dashboard">
-    <div class="dashboard-header">
-      <button class="btn btn-primary" (click)="openAddFormationModal()">Add Formation</button>
-    </div>
-  
-    <div class="formation-list">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Duration</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let formation of formations">
-            <td>{{ formation.title }}</td>
-            <td>{{ formation.description }}</td>
-            <td>{{ formation.price }}</td>
-            <td>{{ formation.duration }}</td>
-            <td>
-              <button class="btn btn-warning" (click)="openEditFormationModal(formation)">Edit</button>
-              <button class="btn btn-danger" (click)="deleteFormation(formation.id)">Delete</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="dashboard-header">
+    <button class="btn btn-primary" (click)="openAddFormation()">Add Formation</button>
   </div>
-  
+
+  <div class="search-bar">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search by Title"
+      [(ngModel)]="searchTitle"
+      (ngModelChange)="onSearchChange()"
+      (keydown.enter)="searchFormations()"
+    />
+  </div>
+
+  <div class="formation-list">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Duration</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let formation of formations">
+          <td>{{ formation.title }}</td>
+          <td>{{ formation.description }}</td>
+          <td>{{ formation.price }}</td>
+          <td>{{ formation.duration }}</td>
+          <td>
+            <button class="btn btn-warning" (click)="openEditFormation(formation)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteFormation(formation.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -39,6 +39,17 @@ public class Admin_FormationController {
         }
     }
 
+    @GetMapping("/title")
+    public ResponseEntity<List<Formation>> getAllFormationsByTitle(@RequestParam String title) {
+        try {
+            List<Formation> formations = formationService.getFormationsByFormationTitle(title);
+            return new ResponseEntity<>(formations, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
     @PostMapping
     public ResponseEntity<?> addFormation(@RequestBody Formation formation) {
         try {

@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { FormationService } from './formation.service';
 
-describe('FormationServiceService', () => {
+describe('FormationService', () => {
   let service: FormationService;
 
   beforeEach(() => {

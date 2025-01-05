@@ -12,8 +12,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormationDetailsComponent } from './components/formation-details/formation-details.component';
 import { LoginComponent } from './components/login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { AddEditFormationComponent } from './components/add-edit-formation/add-edit-formation.component';
+import { ErrorComponent } from './components/error/error.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
     ContactComponent,
     FormationDetailsComponent,
     LoginComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    AddEditFormationComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,8 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
     HttpClientModule,
     NoopAnimationsModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

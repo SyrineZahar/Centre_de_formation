@@ -14,4 +14,6 @@ public interface FormationService {
     Formation updateFormation(int id,Formation formation);
 
     void deleteFormationById(int id);
+
+    List<Formation> getFormationsByFormationTitle(String formationName);
 }

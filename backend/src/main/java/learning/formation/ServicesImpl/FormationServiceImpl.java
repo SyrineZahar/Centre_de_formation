@@ -52,4 +52,9 @@ public class FormationServiceImpl implements FormationService {
     public void deleteFormationById(int id) {
         formationRepository.deleteById(id);
     }
+
+    @Override
+    public List<Formation> getFormationsByFormationTitle(String title) {
+        return formationRepository.findByTitle(title);
+    }
 }

@@ -8,7 +8,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class AdminService {
-  private apiUrl = 'http://localhost:8088/admin/formations'; 
+  private baseUrl = 'http://localhost:8088/admin/formations'; 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   private getAuthHeaders(): HttpHeaders {
@@ -18,31 +18,37 @@ export class AdminService {
   }
 
   getAllFormations(): Observable<Formation[]> {
-    return this.http.get<Formation[]>(this.apiUrl, {
+    return this.http.get<Formation[]>(this.baseUrl, {
       headers: this.getAuthHeaders(),
     });
   }
 
   getFormationById(id: number): Observable<Formation> {
-    return this.http.get<Formation>(`${this.apiUrl}/${id}`, {
+    return this.http.get<Formation>(`${this.baseUrl}/${id}`, {
       headers: this.getAuthHeaders(),
     });
   }
 
   addFormation(formation: Formation): Observable<Formation> {
-    return this.http.post<Formation>(this.apiUrl, formation, {
+    return this.http.post<Formation>(this.baseUrl, formation, {
       headers: this.getAuthHeaders(),
     });
   }
 
   updateFormation(id: number, formation: Formation): Observable<Formation> {
-    return this.http.put<Formation>(`${this.apiUrl}/${id}`, formation, {
+    return this.http.put<Formation>(`${this.baseUrl}/${id}`, formation, {
       headers: this.getAuthHeaders(),
     });
   }
 
   deleteFormation(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`, {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`, {
+      headers: this.getAuthHeaders(),
+    });
+  }
+
+  getFormationsByTitle(title: string): Observable<Formation[]> {
+    return this.http.get<Formation[]>(`${this.baseUrl}/title?title=${title}`, {
       headers: this.getAuthHeaders(),
     });
   }
