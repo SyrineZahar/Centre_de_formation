@@ -1,69 +1,96 @@
 <div class="add-edit-formation">
-    <h2 *ngIf="!isEditMode">Add New Formation</h2>
-    <h2 *ngIf="isEditMode">Edit Formation</h2>
-  
-    <form (ngSubmit)="onSubmit()" [formGroup]="formationForm">
-      <div class="form-group">
-        <label for="title">Title</label>
-        <input
-          id="title"
-          class="form-control"
-          formControlName="title"
-          placeholder="Enter formation title"
-          required
-        />
+  <h2 *ngIf="!isEditMode">Add New Formation</h2>
+  <h2 *ngIf="isEditMode">Edit Formation</h2>
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="formationForm">
+    <!-- Title Field with Validation -->
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input
+        id="title"
+        class="form-control"
+        formControlName="title"
+        placeholder="Enter formation title"
+        required
+        minlength="3" 
+      />
+      <div *ngIf="formationForm.get('title')?.touched && formationForm.get('title')?.invalid" class="text-red-500 text-xs mt-1">
+        <div *ngIf="formationForm.get('title')?.hasError('required')" class="text-red-500">Title is required.</div>
+        <div *ngIf="formationForm.get('title')?.hasError('minlength')" class="text-red-500">Title must be at least 3 characters.</div>
       </div>
-  
-      <div class="form-group">
-        <label for="description">Description</label>
-        <textarea
-          id="description"
-          class="form-control"
-          formControlName="description"
-          placeholder="Enter formation description"
-          required
-        ></textarea>
+    </div>
+
+    <!-- Description Field with Validation -->
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        class="form-control"
+        formControlName="description"
+        placeholder="Enter formation description"
+        required
+        minlength="10" 
+      ></textarea>
+      <div *ngIf="formationForm.get('description')?.touched && formationForm.get('description')?.invalid" class="text-red-500 text-xs mt-1">
+        <div *ngIf="formationForm.get('description')?.hasError('required')" class="text-red-500">Description is required.</div>
+        <div *ngIf="formationForm.get('description')?.hasError('minlength')" class="text-red-500">Description must be at least 10 characters.</div>
       </div>
-  
-      <div class="form-group">
-        <label for="price">Price</label>
-        <input
-          type="number"
-          id="price"
-          class="form-control"
-          formControlName="price"
-          placeholder="Enter formation price"
-          required
-        />
+    </div>
+
+    <!-- Price Field with Validation -->
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input
+        type="number"
+        id="price"
+        class="form-control"
+        formControlName="price"
+        placeholder="Enter formation price"
+        required
+        min="0" 
+      />
+      <div *ngIf="formationForm.get('price')?.touched && formationForm.get('price')?.invalid" class="text-red-500 text-xs mt-1">
+        <div *ngIf="formationForm.get('price')?.hasError('required')" class="text-red-500">Price is required.</div>
+        <div *ngIf="formationForm.get('price')?.hasError('min')" class="text-red-500">Price must be a positive number.</div>
       </div>
-  
-      <div class="form-group">
-        <label for="duration">Duration (in hours)</label>
-        <input
-          type="number"
-          id="duration"
-          class="form-control"
-          formControlName="duration"
-          placeholder="Enter formation duration"
-          required
-        />
+    </div>
+
+    <!-- Duration Field with Validation -->
+    <div class="form-group">
+      <label for="duration">Duration (in hours)</label>
+      <input
+        type="number"
+        id="duration"
+        class="form-control"
+        formControlName="duration"
+        placeholder="Enter formation duration"
+        required
+        min="1"
+      />
+      <div *ngIf="formationForm.get('duration')?.touched && formationForm.get('duration')?.invalid" class="text-red-500 text-xs mt-1">
+        <div *ngIf="formationForm.get('duration')?.hasError('required')" class="text-red-500">Duration is required.</div>
+        <div *ngIf="formationForm.get('duration')?.hasError('min')" class="text-red-500">Duration must be at least 1 hour.</div>
       </div>
-  
-      <div class="form-group">
-        <label for="image">Image URL</label>
-        <input
-          type="text"
-          id="image"
-          class="form-control"
-          formControlName="image"
-          placeholder="Enter image URL"
-        />
-      </div>
-  
-      <button type="submit" class="btn btn-primary">
-        {{ isEditMode ? 'Update' : 'Add' }} Formation
-      </button>
-      <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
-    </form>
-  </div>
-  
+    </div>
+
+    <!-- Image URL Field (Optional) -->
+    <div class="form-group">
+      <label for="image">Image URL</label>
+      <input
+        type="text"
+        id="image"
+        class="form-control"
+        formControlName="image"
+        placeholder="Enter image URL"
+      />
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary" [disabled]="formationForm.invalid">
+      {{ isEditMode ? 'Update' : 'Add' }} Formation
+    </button>
+
+    <!-- Cancel Button -->
+    <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+  </form>
+</div>
