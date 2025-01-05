@@ -1,12 +1,10 @@
-/* Overall layout */
 .admin-dashboard {
     padding: 30px;
-    background: #f8f9fa; /* Lighter background */
+    background: #f8f9fa;
     max-width: 1200px;
     margin: 0 auto;
   }
   
-  /* Dashboard Header */
   .dashboard-header {
     display: flex;
     justify-content: flex-end;
@@ -17,27 +15,25 @@
     padding: 12px 25px;
     font-size: 16px;
     font-weight: bold;
-    background-color: #7b43ac; /* Slightly muted purple */
+    background-color: #7b43ac; 
     color: #fff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
-    width: 200px; /* Set fixed width for consistency */
+    width: 200px; 
   }
   
   .dashboard-header button:hover {
-    background-color: #4e1f6e; /* Darker shade of purple */
+    background-color: #4e1f6e;
   }
   
-  /* Formation List Table */
   .formation-list {
     background-color: #fff;
     padding: 30px;
     border-radius: 10px;
   }
   
-  /* Table Styles */
   .table {
     width: 100%;
     border-collapse: collapse;
@@ -53,13 +49,13 @@
   }
   
   .table th {
-    background-color: #9c27b0; /* Lighter purple */
+    background-color: #9c27b0; 
     color: #fff;
     text-transform: uppercase;
   }
   
   .table td {
-    background-color: #fafafa; /* Light background for rows */
+    background-color: #fafafa; 
   }
   
   .table tbody tr:hover {
@@ -72,11 +68,11 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    width: 100%; /* Ensure buttons take full width of the table cell */
-    margin: 5px 0; /* Adds space between the buttons */
+    width: 100%; 
+    margin: 5px 0; 
   }
   
-  /* Updated Button Colors */
+
   .table td .btn-warning {
     background-color: #ff9800;
     color: #fff;

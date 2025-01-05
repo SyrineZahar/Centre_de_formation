@@ -20,7 +20,5 @@ export class FormationService {
   getFormationById(id: number): Observable<Formation> {
     return this.http.get<Formation>(`${this.baseUrl}/${id}`)
   }
-
-
  
 }

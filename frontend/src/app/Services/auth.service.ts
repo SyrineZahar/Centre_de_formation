@@ -21,7 +21,6 @@ export class AuthService {
 
   getToken(): string | null {
     const token = localStorage.getItem('token');
-    console.log('Retrieved token:', token);  // Add logging
     return token;
   }
   

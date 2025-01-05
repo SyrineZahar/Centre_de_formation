@@ -1,7 +1,7 @@
 .contact-container {
     padding: 40px 20px;
     text-align: center;
-    background-color: #f8f9fa; /* Light background color */
+    background-color: #f8f9fa; 
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin: 20px auto;
@@ -12,7 +12,7 @@
 .contact-title {
     font-size: 36px;
     font-weight: 700;
-    color: #6c2cb3; /* Purple color for the title */
+    color: #6c2cb3; 
     margin-bottom: 30px;
     animation: slideIn 0.5s ease-out;
 }
@@ -44,7 +44,7 @@
 
 .testimonials h2 {
     font-size: 24px;
-    color: #6c2cb3; /* Purple color for testimonials title */
+    color: #6c2cb3; 
     margin-bottom: 20px;
 }
 
