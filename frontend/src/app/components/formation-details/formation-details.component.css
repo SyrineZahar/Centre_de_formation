@@ -1,0 +1,77 @@
+/* Style for the dialog container */
+.mat-dialog-container {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff; /* White background */
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Shadow effect */
+    font-family: 'Arial', sans-serif;
+    z-index: 9999; /* Ensure it's in the foreground */
+  }
+  
+  /* Title styling */
+  h1.mat-dialog-title {
+    font-size: 24px;
+    color: #6a0dad; /* Purple color */
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Content styling */
+  .mat-dialog-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Course image styling */
+  .course-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow on the image */
+    margin-bottom: 20px;
+  }
+  
+  /* Description and price styling */
+  p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+  }
+  
+  /* Price styling */
+  .course-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #6a0dad; /* Purple color */
+    margin-top: 10px;
+  }
+  
+  /* Action buttons */
+  .mat-dialog-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  /* Close button styling */
+  button {
+    background-color: #6a0dad; /* Purple color */
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Hover effect for button */
+  button:hover {
+    background-color: #520a94; /* Darker purple for hover effect */
+  }
+  

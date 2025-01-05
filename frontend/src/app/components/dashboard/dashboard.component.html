@@ -1,0 +1,22 @@
+<div class="dashboard-container">
+    <h1 class="dashboard-title">Nos Formations</h1>
+    <div class="course-list">
+      <ng-container *ngIf="courses.length; else noCourses">
+        <div class="course-card" *ngFor="let course of courses" (click)="openCourseDetails(course)">
+          <img 
+            [src]="course.image || 'assets/image/default-course.jpg'" 
+            [alt]="'Image de ' + course.title" 
+            class="course-image" 
+          />
+          <div class="course-details">
+            <h3 class="course-title">{{ course.title }}</h3>
+            <p class="course-price">{{ course.price | currency:'EUR' }}</p>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noCourses>
+        <p class="no-courses-message">Aucune formation disponible pour le moment.</p>
+      </ng-template>
+    </div>
+  </div>
+  

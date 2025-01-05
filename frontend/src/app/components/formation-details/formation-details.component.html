@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>{{ data.course.title }}</h1>
+<div mat-dialog-content>
+  <img [src]="data.course.image || 'assets/image/default-course.jpg'" alt="Course Image" class="course-image" />
+  <p>{{ data.course.description }}</p>
+  <p class="course-price">{{ data.course.price | currency:'EUR' }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</div>
